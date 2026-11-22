@@ -1,0 +1,22 @@
+Optimization terminated successfully.
+         Current function value: 0.079598
+         Iterations: 10
+         Function evaluations: 20
+         Gradient evaluations: 20
+                     ZeroInflatedPoisson Regression Results                    
+===============================================================================
+Dep. Variable:            n_siniestros   No. Observations:                 4541
+Model:             ZeroInflatedPoisson   Df Residuals:                     4540
+Method:                            MLE   Df Model:                            0
+Date:                 Sun, 22 Nov 2026   Pseudo R-squ.:              -1.151e-08
+Time:                         04:48:51   Log-Likelihood:                -361.45
+converged:                        True   LL-Null:                       -361.45
+Covariance Type:             nonrobust   LLR p-value:                       nan
+==============================================================================
+                 coef    std err          z      P>|z|      [0.025      0.975]
+------------------------------------------------------------------------------
+inflate_0      3.6935      0.139     26.650      0.000       3.422       3.965
+0             -0.9277      0.135     -6.892      0.000      -1.191      -0.664
+==============================================================================
+/usr/local/lib/python3.13/dist-packages/statsmodels/tsa/tsatools.py:166: FutureWarning: The behavior of array concatenation with empty entries is deprecated. In a future version, this will no longer exclude empty items when determining the result dtype. To retain the old behavior, exclude the empty entries before the concat operation.
+  x = pd.concat(x[::order], axis=1)
