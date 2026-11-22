@@ -48,3 +48,32 @@ def sim_annual_loss_zip_lognormal_detail(
     total_loss = sev_retained.sum()
 
     return total_loss, sev, sev_retained, n_claims
+    ###########################################
+    ####La siguiente función genera las simulaciones 2 M
+    def montecarlo_annual_losses_detail(
+    sim_func,
+    n_sim=2_000_000,
+    random_seed=123,
+    **sim_kwargs
+):
+    np.random.seed(random_seed)
+    ####se generan 2M de ceros para severidades y frecuencias
+    losses = np.zeros(n_sim)
+    freqs = np.zeros(n_sim, dtype=int)
+
+    severities_sim_all = []
+    severities_ret_all = []
+    ####para cada simulación se aplica la función anterior y se retoman los parámetros
+    for i in range(n_sim):
+        L, sev_sim, sev_ret, n = sim_func(**sim_kwargs)
+        ####Se asignan de la forma siguiente
+        losses[i] = L
+        freqs[i] = n
+        ####se acumulan 
+        severities_sim_all.append(sev_sim)
+        severities_ret_all.append(sev_ret)
+        ###Cada 5000 se imprime cuantas lleva
+        if (i + 1) % 5_000 == 0:
+            print(f"{i + 1:,} simulaciones")
+
+    return losses, severities_sim_all, severities_ret_all, freqs
