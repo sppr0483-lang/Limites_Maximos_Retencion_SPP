@@ -1,0 +1,19 @@
+Lambda: 0.3954788156177575 
+Prob cero estructural: 0.9757203689907209 
+Modelo:
+Ec 1---->
+log(\pi/(1-\pi)) = \beta_0 + \epsilon
+\epsilon \sim \mathcal{N}(0,\sigma)
+exp(\beta_0 + \epsilon) = pi/(1+pi)
+i.e.
+exp(\beta_0 + \epsilon)/(1+exp(\beta_0 + \epsilon)) = \pi
+es probailidad de ceros estructurales
+1/1+exp(\beta_0 + \epsilon)) =1-\pi es la probailidad de algún siniestro 
+
+Ec 2 ----->\\
+
+Y = \epsilon_2 \\
+
+con \epsilon_2 \sim \pi \cdot \delta_0 + (1-\pi) \cdot Poisson(Lambda)
+
+
