@@ -1,0 +1,67 @@
+###############Revisión convergencia
+####medidas descriptivas de resultados de la simulación
+#######las métricas quedan fijas
+#####CONVERGENCIA
+	n_sim	mean_rel_change	p99_rel_change
+4900	4901000	0	0
+4901	4902000	0	0
+4902	4903000	0	0
+4903	4904000	0	0
+4904	4905000	0	0
+...	...	...	...
+4995	4996000	0	0
+4996	4997000	0	0
+4997	4998000	0	0
+4998	4999000	0	0
+4999	5000000	0	0
+
+####Dispersión
+Disminución desviación estandar muestral
+################################
+def mc_se(x):
+    return x.std(ddof=1) / np.sqrt(len(x))
+
+df_conv["mean_se"] = [
+    mc_se(losses[:n]) for n in df_conv["n_sim"]
+]
+########################################################
+print(df_conv["mean_se"])
+0      53,111
+1      39,196
+2      31,483
+3      27,527
+4      24,709
+        ...  
+4995      794
+4996      794
+4997      793
+4998      793
+4999      793
+Name: mean_se, Length: 5000, dtype: float64
+##################################################3
+########ANALISIS EXPLORATORIO RESULTADOS
+#########################################################
+#########Media del número de siniestros>0
+####se imprime probabilidad de reclamación no 0 estructural
+###de los siniestros la media de reclamaciones por año por año 
+#################################################################
+print((panel["n_siniestros"] > 0).mean())
+print(1-p_zero)
+df_siniestros["Fecha Ocurrido"] = pd.to_datetime(df_siniestros["Fecha Ocurrido"])
+df_siniestros["anio"] = df_siniestros["Fecha Ocurrido"].dt.year
+df_siniestros.groupby("anio").size()
+print(df_siniestros.groupby("anio").size().mean())
+0.011891653820744329
+0.0242796310092791
+13.666666666666666
+##############################3
+##############3
+all_sev = np.concatenate(sev_ret_all)
+print(all_sev.mean())
+print(np.quantile(all_sev, [0.5, 0.9, 0.95, 0.99]))
+#################
+#####promedio de severidad retenida por escenario
+158608.63037833569
+##cuantiles de la severidad retenida
+[  28539.154259    315904.56084945  624141.49035753 2241066.03466649]
+
