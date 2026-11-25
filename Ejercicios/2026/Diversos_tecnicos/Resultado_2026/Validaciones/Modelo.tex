@@ -17,5 +17,22 @@ Ec 2 ----->\\
 Y = \epsilon_2 \\
 
 con \epsilon_2 \sim \pi \cdot \delta_0 + (1-\pi) \cdot Poisson(Lambda)
+#########################################################Validacion
+Simular_nsiniestros = function(npol,lambda,pi){
++   lam = (1-pi)*lambda
++   der = rpois(npol, lam)
++   return(der)
++ }
+> lambda=  0.3954788156177575
+> pi = 0.9757203689907209
+> uy = Simular_nsiniestros(length(Panel_LMR_2026$n_siniestros),lambda,pi)
+> #cumsum(uy)
+> ks.test(Panel_LMR_2026$n_siniestros,uy)
+
+	Asymptotic two-sample Kolmogorov-Smirnov test
+
+data:  Panel_LMR_2026$n_siniestros and uy
+D = 0.0041841, p-value = 1
+alternative hypothesis: two-sided
 
 
