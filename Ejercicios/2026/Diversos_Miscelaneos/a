@@ -61,12 +61,12 @@ ks
 #########################
 #################################
 ####la prueba se realizo sobre exp(epsilon)
-#####Sea NSiniestros-(\sum \beta_i*FACT_i + \beta_0 + log(\mathbb{E}[Duration])) = \epsilon
+#####Sea log(NSiniestros)-(\sum \beta_i*FACT_i + \beta_0) = \epsilon
 ####se simula epsilon' = exp(epsilon) \sim Poisson por la Kolmgorov Smirnov
 #### Se recupera \epsilon = log(\epsilon') para cada escenario
-####Se suma sum \beta_i*FACT_i + \beta_0 + log(\mathbb{E}[Duration]) a  \epsilon lo 
-##que da igual a NSiniestros
-###(\sum \beta_i*FACT_i + \beta_0 + log(\mathbb{E}[Duration])) + epsilon = NSiniestros
+####Se suma sum \beta_i*FACT_i + \beta_0 a  \epsilon lo 
+##que da igual a log(NSiniestros)
+###exp[\sum \beta_i*FACT_i + \beta_0 + epsilon] = NSiniestros
 ############Escenario para la frecuencia
 set.seed(123)
 escenario = rpois(2000000,fit$estimate[1]) 
