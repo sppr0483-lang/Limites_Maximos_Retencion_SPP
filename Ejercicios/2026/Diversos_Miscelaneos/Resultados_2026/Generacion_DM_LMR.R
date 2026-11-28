@@ -48,13 +48,23 @@ betas1 <- coef(mymodel)
 mat1 <- model.matrix(mymodel, data = data1)
 betas1 <- coef(mymodel)
 set.seed(123)
-res = residuals(mymodel,type = "response")+900#+log(data1$Duration)
+res = residuals(mymodel,type = "response")+900
 library(MASS)
 fit <- fitdistr((res),  densfun = "poisson")
 fit$estimate
 poisson = rpois(13, fit$estimate[1])
 ks = ks.test(poisson, res)
 ks
+#########################
+#################################
+####la prueba se realizo sobre epsilon +900
+#####Sea [NSiniestros^3]-(\sum \beta_i*FACT_i + \beta_0) = \epsilon
+####se simula epsilon' = epsilon+900 \sim Poisson por la Kolmgorov Smirnov
+#### Se recupera \epsilon = \epsilon'-900 para cada escenario
+####Se suma sum \beta_i*FACT_i + \beta_0 a  \epsilon lo 
+##que da igual a [NSiniestros]^3
+###[\sum \beta_i*FACT_i + \beta_0 + epsilon]^{\frac{1}{3}} = NSiniestros
+############Escenario para la frecuencia
 set.seed(123)
 #escenario = rpois(2000000,fit$estimate[1]) 
 tendencia = (mymodel$coefficients[1]*colMeans(mat1)[1]) + sum(mymodel$coefficients[2:7]*colMeans(mat1)[2:7])
