@@ -1,4 +1,17 @@
-data1 = read_excel("D:/Limites maximos de retencion/Resultados_2026/Miscelaneos/data4.xlsx")
+###################Modelo lineal generalizado para frecuencia
+###################Modelo lineal generalizado para severidad
+####################Validación de Bondad de ajuste para ambos
+####################Generación de escenarios
+####################Prueba de límite máximo de retención 20 millones
+####################En todos los escenarios la siniestralidad quedó por debajo del límite máximo propuesto
+####################0% de las simulaciones excedieron LMR
+####################Tablas de control
+####################Impresión de resultados
+####################
+########################Importación  de datos
+####Cambiar ruta
+ruta = "D:/Limites maximos de retencion/Resultados_2026/Miscelaneos/data4.xlsx"
+data1 = read_excel(ruta)
 names(data1) = c("FACT1","FACT2","Año","NumClaims","Severidad","Duración Total","Duration","POL")
 #data1 $Duration = data1$`Duración D*`
 #data1$NumClaims  =data1$Siniestros*data1$Duration
